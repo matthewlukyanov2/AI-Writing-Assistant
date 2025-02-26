@@ -23,6 +23,9 @@ const Signup = () => {
       <div>
         <h2>Sign Up</h2>
         <form onSubmit={handleSignup}>
+        <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit">Sign Up</button>
         </form>
       </div>
     );

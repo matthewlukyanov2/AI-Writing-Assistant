@@ -8,6 +8,16 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login successful!");
+        navigate("/"); 
+      } catch (error) {
+        alert(error.message);
+      }
+    };
 }
 
 export default Login;

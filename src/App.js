@@ -1,9 +1,17 @@
 import React from "react";
-import { auth } from "./firebase-config";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
 
 function App() {
-  console.log("Firebase Auth:", auth); // Log firebase
-  return <h1>Firebase Connected Successfully </h1>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

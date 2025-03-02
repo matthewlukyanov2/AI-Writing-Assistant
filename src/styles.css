@@ -53,3 +53,17 @@ body {
   .logout-button:hover {
     background-color: #c82333;
   }
+
+  .button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Adds space between buttons */
+    align-items: center; /* Centers buttons */
+    margin-top: 20px; /* Adds some spacing from the heading */
+}
+
+.button-container button {
+    width: 150px; /* Adjust width to make buttons look consistent */
+    padding: 10px;
+    font-size: 16px;
+}

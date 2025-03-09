@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
+import AIAssistant from "./components/AIAssistant";
 import "./styles.css";
 
 function App() {
@@ -19,12 +20,16 @@ function App() {
           <Link to="/signup">
             <button>Sign Up</button>
           </Link>
+          <Link to="/ai">
+          <button>Use AI Assistant</button>
+          </Link>
         </div>
 
       <Routes>
       <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/ai" element={<AIAssistant />} />
         </Routes>
       </div>
     </Router>

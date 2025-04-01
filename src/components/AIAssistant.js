@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { getAIResponse } from "../utils/openai";
+//import { getAIResponse } from "../utils/openai";
+import { getAIResponse } from "../utils/togetherAI";
 
 const AIAssistant = () => {
   const [input, setInput] = useState("");

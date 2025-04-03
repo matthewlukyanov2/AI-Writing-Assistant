@@ -8,7 +8,7 @@ export const getAIResponse = async (userInput) => {
     const response = await axios.post(
       API_URL,
       {
-        model: "mistral-7b-instruct", // AI model
+        model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free", // AI model
         messages: [{ role: "user", content: userInput }],
       },
       {

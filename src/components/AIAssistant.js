@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import { getAIResponse } from "../utils/openai";
 import { getAIResponse } from "../utils/togetherAI";
 
 const AIAssistant = () => {
@@ -13,6 +12,10 @@ const AIAssistant = () => {
 
   // Save the input to history
   setHistory([{ input, output: result }, ...history].slice(0, 5)); // Limit to last 5 entries
+};
+
+const handleClearHistory = () => {
+  setHistory([]);
 };
 
 const handleHistoryClick = (historyItem) => {
@@ -51,7 +54,7 @@ const handleHistoryClick = (historyItem) => {
         ))}
       </ul>
 
-      
+      <button onClick={handleClearHistory}>Clear History</button>
 
     </div>
   );

@@ -1,0 +1,74 @@
+/* Style for the AI container */
+.ai-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Text area styling */
+  .ai-container textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+  }
+  
+  /* Button styling */
+  .ai-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .ai-container button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Output paragraph styling */
+  .ai-container p {
+    font-size: 14px;
+    color: #555;
+    padding: 10px 0;
+  }
+  
+  /* History list */
+  .ai-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .ai-container li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .ai-container li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Copy to clipboard button */
+  .ai-container button {
+    background-color: #008CBA;
+    margin-top: 10px;
+  }
+  
+  .ai-container button:hover {
+    background-color: #007B9D;
+  }
+  

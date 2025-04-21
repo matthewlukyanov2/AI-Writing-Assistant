@@ -6,6 +6,7 @@ const AIAssistant = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [history, setHistory] = useState([]);
+  const [copied, setCopied] = useState(false);
 
   const handleGenerate = async () => {
     const result = await getAIResponse(input);
@@ -13,6 +14,12 @@ const AIAssistant = () => {
 
   // Save the input to history
   setHistory([{ input, output: result }, ...history].slice(0, 5)); // Limit to last 5 entries
+};
+
+const handleCopy = () => {
+  navigator.clipboard.writeText(output);
+  setCopied(true);
+  setTimeout(() => setCopied(false), 2000); // Hide the message after 2 seconds
 };
 
 const handleClearHistory = () => {
@@ -39,10 +46,11 @@ const handleHistoryClick = (historyItem) => {
 <p>{output}</p>
 
 {output && (
-  <button onClick={() => navigator.clipboard.writeText(output)}>
-    Copy to Clipboard
-  </button>
-)}
+        <div>
+          <button onClick={handleCopy}>Copy to Clipboard</button>
+          {copied && <span style={{ marginLeft: "10px", color: "green" }}>Text copied!</span>}
+        </div>
+      )}
 
  {/* Display recent input-output history */}
  <h3>Recent History:</h3>

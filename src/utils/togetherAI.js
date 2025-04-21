@@ -5,23 +5,34 @@ const API_URL = "https://api.together.xyz/v1/chat/completions";
 
 export const getAIResponse = async (userInput) => {
   try {
-    const response = await axios.post(
-      API_URL,
-      {
-        model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free", // AI model
-        messages: [{ role: "user", content: userInput }],
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json",
       },
-      {
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+      body: JSON.stringify({
+        model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are an AI that paraphrases user input in a natural and conversational way. Keep the meaning intact, but use casual and fluent phrasing. Return only the paraphrased sentence.",
+          },
+          {
+            role: "user",
+            content: userInput,
+          },
+        ],
+        temperature: 0.7,
+        max_tokens: 100,
+      }),
+    });
 
-    return response.data.choices[0].message.content;
+    const data = await response.json();
+    return data.choices[0]?.message?.content || "No response from AI.";
   } catch (error) {
-    console.error("Together AI Error:", error);
-    return "Error: Unable to generate text";
+    console.error("AI request failed:", error);
+    return "Something went wrong!";
   }
 };

@@ -21,7 +21,13 @@ const AIAssistant = () => {
       />
       <button onClick={handleGenerate}>Enhance Text</button>
       <h3>Output:</h3>
-      <p>{output}</p>
+<p>{output}</p>
+{output && (
+  <button onClick={() => navigator.clipboard.writeText(output)}>
+    Copy to Clipboard
+  </button>
+)}
+
     </div>
   );
 };

@@ -54,6 +54,9 @@ const handleHistoryClick = (historyItem) => {
 
  {/* Display recent input-output history */}
  <h3>Recent History:</h3>
+ {history.length === 0 ? (
+  <p>No history available.</p>
+) : (
       <ul>
         {history.map((historyItem, index) => (
           <li key={index}>
@@ -62,6 +65,7 @@ const handleHistoryClick = (historyItem) => {
           </li>
         ))}
       </ul>
+      )}
 
       <button onClick={handleClearHistory}>Clear History</button>
 

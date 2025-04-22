@@ -4,10 +4,11 @@ import './Home.css';
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <div className="phone-frame">
+        <div className="notch"></div>
       <h1>Welcome to the AI Assistant</h1>
       <p>Your friendly tool to improve your writing with AI!</p>
-      <div className="home-buttons">
+      <div className="phone-buttons">
         <Link to="/login">
           <button>Login</button>
         </Link>

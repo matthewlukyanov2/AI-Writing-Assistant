@@ -1,48 +1,84 @@
-/* === Home Page Container === */
-.home-container {
-    max-width: 700px;
-    margin: 4rem auto;
-    padding: 2rem;
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  }
-  
-  /* === Heading === */
-  .home-container h1 {
-    font-size: 2.5rem;
-    color: #1f2937;
-    margin-bottom: 1rem;
-  }
-  
-  /* === Welcome Message === */
-  .home-container p {
-    font-size: 1.2rem;
-    color: #4b5563;
-    margin-bottom: 2rem;
-  }
-  
-  /* === Buttons Container === */
-  .home-buttons {
+/* Full page background */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #7f00ff, #e100ff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+  
+  /* Faux phone frame */
+  .phone-frame {
+    background-color: #fff;
+    width: 375px;
+    height: 700px;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp 0.8s ease;
+    position: relative;
+  }
+  
+  /* Fade in animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Top notch (like iPhone style) */
+  .notch {
+    width: 100px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Title and welcome */
+  .phone-frame h1 {
+    font-size: 24px;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+  }
+  
+  .phone-frame p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  /* Buttons */
+  .phone-buttons {
+    display: flex;
     gap: 1rem;
   }
   
-  /* === Button Styling === */
-  .home-buttons button {
-    background-color: #4f46e5;
+  .phone-buttons button {
+    flex: 1;
+    background-color: #7c3aed;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    font-size: 14px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background 0.2s ease;
   }
   
-  .home-buttons button:hover {
-    background-color: #4338ca;
+  .phone-buttons button:hover {
+    background-color: #6d28d9;
   }
   

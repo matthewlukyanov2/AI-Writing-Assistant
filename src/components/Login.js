@@ -15,7 +15,7 @@ const Login = () => {
       try {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Login successful!");
-        navigate("/"); 
+        navigate("/ai");
       } catch (error) {
         alert(error.message);
       }

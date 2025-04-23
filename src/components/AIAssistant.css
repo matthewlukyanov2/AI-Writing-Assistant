@@ -1,74 +1,77 @@
-/* Style for the AI container */
-.ai-container {
-    max-width: 600px;
-    margin: 20px auto;
+.phone-frame {
+    background: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 30px;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Text area styling */
-  .ai-container textarea {
-    width: 100%;
-    height: 120px;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
-  }
-  
-  /* Button styling */
-  .ai-container button {
-    background-color: #4CAF50;
+    width: 375px;
+    margin: 40px auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
   }
   
-  .ai-container button:hover {
-    background-color: #45a049;
+  .notch {
+    height: 30px;
+    background: black;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    margin: -20px auto 20px auto;
+    width: 210px;
   }
   
-  /* Output paragraph styling */
-  .ai-container p {
-    font-size: 14px;
-    color: #555;
-    padding: 10px 0;
+  .camera-dot {
+    width: 10px;
+    height: 10px;
+    background: gray;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
-  /* History list */
-  .ai-container ul {
-    list-style-type: none;
-    padding: 0;
+  .login-title {
+    font-size: 24px;
+    color: #7c3aed;
+    margin-bottom: 1rem;
+    text-align: center;
   }
   
-  .ai-container li {
-    margin: 10px 0;
+  .back-arrow {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .back-arrow a {
+    text-decoration: none;
+    color: #ccc;
+  }
+  
+  .ai-textarea {
+    width: 100%;
+    height: 100px;
     padding: 10px;
-    background-color: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    margin-bottom: 1rem;
+  }
+  
+  .ai-button {
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    border-radius: 10px;
     cursor: pointer;
+    margin-bottom: 1rem;
   }
   
-  .ai-container li:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Copy to clipboard button */
-  .ai-container button {
-    background-color: #008CBA;
-    margin-top: 10px;
-  }
-  
-  .ai-container button:hover {
-    background-color: #007B9D;
+  .ai-button:hover {
+    background-color: #6d28d9;
   }
   

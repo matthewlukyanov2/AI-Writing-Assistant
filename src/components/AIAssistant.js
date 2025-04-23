@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getAIResponse } from "../utils/togetherAI";
+import { Link } from "react-router-dom";
 import "./AIAssistant.css"; 
 
 const AIAssistant = () => {
@@ -34,41 +35,48 @@ const handleHistoryClick = (historyItem) => {
 };
 
   return (
-    <div className="ai-container">
-      <h2>AI Writing Assistant</h2>
+    <div className="phone-frame login-frame">
+      <div className="notch">
+        <div className="camera-dot"></div>
+      </div>
+      <div className="back-arrow">
+        <Link to="/">←</Link>
+      </div>
+
+      <h2 className="login-title">AI Writing Assistant</h2>
+
       <textarea
         placeholder="Enter text..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        className="ai-textarea"
       />
-      <button onClick={handleGenerate}>Enhance Text</button>
-      <h3>Output:</h3>
-<p>{output}</p>
+      <button className="ai-button" onClick={handleGenerate}>Enhance Text</button>
 
-{output && (
+      <h3>Output:</h3>
+      <p>{output}</p>
+
+      {output && (
         <div>
           <button onClick={handleCopy}>Copy to Clipboard</button>
           {copied && <span style={{ marginLeft: "10px", color: "green" }}>Text copied!</span>}
         </div>
       )}
 
- {/* Display recent input-output history */}
- <h3>Recent History:</h3>
- {history.length === 0 ? (
-  <p>No history available.</p>
-) : (
-      <ul>
-        {history.map((historyItem, index) => (
-          <li key={index}>
-           
-            <p>{historyItem.output}</p>
-          </li>
-        ))}
-      </ul>
+      <h3>Recent History:</h3>
+      {history.length === 0 ? (
+        <p>No history available.</p>
+      ) : (
+        <ul>
+          {history.map((historyItem, index) => (
+            <li key={index}>
+              <p>{historyItem.output}</p>
+            </li>
+          ))}
+        </ul>
       )}
 
       <button onClick={handleClearHistory}>Clear History</button>
-
     </div>
   );
 };

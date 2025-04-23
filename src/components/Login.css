@@ -48,4 +48,23 @@
     background-color: #6d28d9;
   }
   
+  .back-arrow {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    font-size: 24px;
+    padding-left: 10px;
+  }
+  
+  .back-arrow a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .back-arrow a:hover {
+    color: var(--button);
+  }
   

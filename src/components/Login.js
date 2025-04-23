@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -26,6 +26,10 @@ const Login = () => {
       <div className="notch">
         <div className="camera-dot"></div>
       </div>
+      <div className="back-arrow">
+  <Link to="/">←</Link>
+</div>
+
       <h1 className="login-title">Login</h1>
       <form className="login-form" onSubmit={handleLogin}>
         <input

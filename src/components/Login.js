@@ -9,16 +9,21 @@ const Login = () => {
     console.log("Login page loaded!");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
       e.preventDefault();
+      setErrorMessage("");
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful!");
         navigate("/ai");
       } catch (error) {
-        alert(error.message);
+        if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+          setErrorMessage("Incorrect email or password.");
+        } else {
+          setErrorMessage("An error occurred. Please try again.");
+        }
       }
     };
 
@@ -45,6 +50,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">Login</button>
       </form>
        </div>

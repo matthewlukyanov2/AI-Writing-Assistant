@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getAIResponse } from "../utils/togetherAI";
 import { Link } from "react-router-dom";
+import { FiSettings } from "react-icons/fi"; 
 import "./AIAssistant.css"; 
 
 const AIAssistant = () => {
@@ -39,9 +40,11 @@ const handleHistoryClick = (historyItem) => {
       <div className="notch">
         <div className="camera-dot"></div>
       </div>
-      <div className="back-arrow">
-        <Link to="/">←</Link>
-      </div>
+      <div className="settings-icon">
+  <Link to="/settings">
+    <FiSettings size={24} />
+  </Link>
+</div>
 
       <h2 className="login-title">AI Writing Assistant</h2>
 

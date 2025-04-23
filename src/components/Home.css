@@ -1,49 +1,85 @@
+
 /* Full page background */
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #7f00ff, #e100ff);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #7c3aed, #c084fc);
     min-height: 100vh;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
   }
   
-  /* Faux phone frame */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+    pointer-events: none;
+    animation: pan 20s linear infinite;
+  }
+  
+  @keyframes pan {
+    from { background-position: 0 0; }
+    to { background-position: 100% 100%; }
+  }
+  
+  /* Phone frame */
   .phone-frame {
-    background-color: #fff;
-    width: 375px;
+    max-width: 375px;
     height: 700px;
+    margin: 40px auto;
+    padding: 20px;
     border-radius: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    padding: 2rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: fadeInUp 0.8s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
+    overflow: hidden;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  }  
+  
+  /* Subtle sparkle animation */
+.phone-frame::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1), transparent 40%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05), transparent 40%);
+    animation: sparkle 6s linear infinite;
+    pointer-events: none;
   }
   
-  /* Fade in animation */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes sparkle {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.1); }
   }
+  
   
   /* Top notch (like iPhone style) */
   .notch {
     width: 100px;
     height: 20px;
     background-color: #ddd;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 0 0 12px 12px;
+  margin: 0 auto;
+  }
+
+  .camera-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 50%;
   }
   
   /* Title and welcome */
@@ -63,7 +99,11 @@ body {
   /* Buttons */
   .phone-buttons {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
   }
   
   .phone-buttons button {
@@ -82,3 +122,72 @@ body {
     background-color: #6d28d9;
   }
   
+  .pulse-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #a855f7;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #a855f7, 0 0 24px #9333ea;
+    animation: pulse 1.5s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 auto 20px;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 12px #a855f7, 0 0 24px #9333ea; }
+    50% { transform: scale(1.1); box-shadow: 0 0 16px #d946ef, 0 0 32px #c084fc; }
+    100% { transform: scale(1); box-shadow: 0 0 12px #a855f7, 0 0 24px #9333ea; }
+  }
+  
+  .typing {
+    width: 53ch;
+    animation: typing 3s steps(53), blink 0.5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #fff;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 53ch }
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent }
+  }
+
+  .fact-bubble {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 280px;
+    z-index: 999;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    animation: bubbleFade 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  @keyframes bubbleFade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+ 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getAIResponse } from "../utils/togetherAI";
 import { Link } from "react-router-dom";
 import { FiSettings } from "react-icons/fi"; 
@@ -8,33 +8,50 @@ import "./Home.css";
 const AIAssistant = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [history, setHistory] = useState([]);
+  
+  // ✅ Proper localStorage setup on first load
+  const [history, setHistory] = useState(() => {
+    const saved = localStorage.getItem("ai-history");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [copied, setCopied] = useState(false);
 
+  // ✅ Save to localStorage when history changes
+  useEffect(() => {
+    localStorage.setItem("ai-history", JSON.stringify(history));
+  }, [history]);
+
   const handleGenerate = async () => {
-    const result = await getAIResponse(input);
-    setOutput(result);
+    if (!input.trim()) return;
 
-  // Save the input to history
-  setHistory([{ input, output: result }, ...history].slice(0, 5)); // Limit to last 5 entries
-};
+    try {
+      const result = await getAIResponse(input);
+      setOutput(result);
 
-const handleCopy = () => {
-  navigator.clipboard.writeText(output);
-  setCopied(true);
-  setTimeout(() => setCopied(false), 2000); // Hide the message after 2 seconds
-};
+      const updated = [{ input, output: result }, ...history].slice(0, 5);
+      setHistory(updated);
+    } catch (err) {
+      setOutput("There was an error getting a response.");
+      console.error(err);
+    }
+  };
 
-const handleClearHistory = () => {
-  setHistory([]);
-};
+  const handleCopy = () => {
+    navigator.clipboard.writeText(output);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
-const handleHistoryClick = (historyItem) => {
-  // Load the input back into the input field
-  setInput(historyItem.input); 
-  // Display the output in the output area
-  setOutput(historyItem.output); 
-};
+  const handleClearHistory = () => {
+    setHistory([]);
+    localStorage.removeItem("ai-history"); // 🧼 Clear from storage too!
+  };
+
+  const handleHistoryClick = (historyItem) => {
+    setInput(historyItem.input);
+    setOutput(historyItem.output);
+  };
 
   return (
     <div className="phone-frame login-frame">

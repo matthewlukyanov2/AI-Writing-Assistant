@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
+import "./Home.css";
 
 const Login = () => {
     console.log("Login page loaded!");

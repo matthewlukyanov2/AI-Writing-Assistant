@@ -1,0 +1,47 @@
+/* Settings.css */
+
+.login-frame {
+    padding-top: 60px;
+  }
+  
+  .settings-content {
+    padding: 20px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .settings-content p {
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+  }
+  
+  .back-arrow {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    font-size: 24px;
+    padding-left: 10px;
+  }
+  
+  .back-arrow a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .back-arrow a:hover {
+    color: var(--button);
+  }
+  
+  .login-title {
+    font-size: 24px;
+    color: #4f46e5;
+    margin-bottom: 1rem;
+  }
+  

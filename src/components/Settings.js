@@ -1,23 +1,26 @@
 import React from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase-config";
-import { useNavigate } from "react-router-dom";
-import "../styles.css";
+import { Link } from "react-router-dom";
+import "./Settings.css";
+import "./Home.css";
 
-const Logout = () => {
-    const navigate = useNavigate();
-  
-    const handleLogout = async () => {
-      try {
-        await signOut(auth);
-        alert("Logout successful!");
-        navigate("/login"); // Redirect to login page
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-  
-    return <button onClick={handleLogout}>Logout</button>;
-  };
+const Settings = () => {
+  return (
+    <div className="phone-frame login-frame">
+      <div className="notch">
+        <div className="camera-dot"></div>
+      </div>
 
-export default Logout;
+      <div className="back-arrow">
+        <Link to="/ai">←</Link>
+      </div>
+
+      <h1 className="login-title">Settings</h1>
+      <div className="settings-content">
+        <p>⚙️ Settings coming soon...</p>
+        {/* Add any toggles or account info here later! */}
+      </div>
+    </div>
+  );
+};
+
+export default Settings;

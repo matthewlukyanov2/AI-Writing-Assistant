@@ -3,6 +3,7 @@ import { getAIResponse } from "../utils/togetherAI";
 import { Link } from "react-router-dom";
 import { FiSettings } from "react-icons/fi"; 
 import "./AIAssistant.css"; 
+import "./Home.css";
 
 const AIAssistant = () => {
   const [input, setInput] = useState("");

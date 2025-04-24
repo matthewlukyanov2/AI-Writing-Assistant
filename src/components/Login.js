@@ -50,6 +50,10 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
+<div className="forgot-password">
+    <Link to="/reset-password">Forgot password?</Link>
+  </div>
          {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">Login</button>
       </form>

@@ -76,3 +76,20 @@
     padding-left: 5px;
   }
   
+  .forgot-password {
+    text-align: left;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    font-size: 0.9rem;
+  }
+  
+  .forgot-password a {
+    color: #c084fc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-password a:hover {
+    color: #a855f7;
+  }
+  

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth, db } from "../firebase-config";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css"; 
 
@@ -13,13 +14,22 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      // Save username to Firestore with correct UID
+      await setDoc(doc(db, "users", user.uid), {
+        username: username,
+        email: email,
+      });
+  
       alert(`Signup successful! Welcome, ${username} 🥳`);
       navigate("/login");
     } catch (error) {
       alert(error.message);
     }
   };
+  
 
   return (
     <div className="phone-frame login-frame">

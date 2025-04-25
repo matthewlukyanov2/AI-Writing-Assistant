@@ -18,6 +18,26 @@ const [previewURL, setPreviewURL] = useState(null);
   const [confirmLogout, setConfirmLogout] = useState(false);
     const navigate = useNavigate();
 
+    // Load saved username and theme on mount
+useEffect(() => {
+  const savedUsername = localStorage.getItem("username");
+  const savedTheme = localStorage.getItem("lightMode");
+  const savedPic = localStorage.getItem("profilePic");
+  
+if (savedPic) {
+  setPreviewURL(savedPic);
+}
+
+  if (savedUsername) {
+    setUsername(savedUsername);
+    setTempUsername(savedUsername);
+  }
+
+  if (savedTheme === "true") {
+    setLightMode(true);
+  }
+}, []);
+
     // Light mode toggle
   useEffect(() => {
     if (lightMode) {
@@ -30,33 +50,52 @@ const [previewURL, setPreviewURL] = useState(null);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
-        const docRef = doc(db, "users", firebaseUser.uid);
-        const docSnap = await getDoc(docRef);
+        const savedUsername = localStorage.getItem("username");
   
-        if (docSnap.exists()) {
-          const fetchedUsername = docSnap.data().username;
-          setUsername(fetchedUsername || firebaseUser.displayName || firebaseUser.email || "User");
+        if (savedUsername) {
+          setUsername(savedUsername);
+          setTempUsername(savedUsername);
         } else {
-          // If user doc doesn't exist, fallback to email or displayName
-          setUsername(firebaseUser.displayName || firebaseUser.email || "User");
+          const docRef = doc(db, "users", firebaseUser.uid);
+          const docSnap = await getDoc(docRef);
+  
+          if (docSnap.exists()) {
+            const fetchedUsername = docSnap.data().username;
+            const fallbackUsername = fetchedUsername || firebaseUser.displayName || firebaseUser.email || "User";
+            setUsername(fallbackUsername);
+            setTempUsername(fallbackUsername);
+          } else {
+            const fallbackUsername = firebaseUser.displayName || firebaseUser.email || "User";
+            setUsername(fallbackUsername);
+            setTempUsername(fallbackUsername);
+          }
         }
       }
     });
   
-    return () => unsubscribe(); // Clean up listener
+    return () => unsubscribe();
   }, []);
+  
+
+  const toggleLightMode = () => {
+    const newMode = !lightMode;
+    setLightMode(newMode);
+    localStorage.setItem("lightMode", newMode);
+  };  
 
   const handleUsernameSave = () => {
     setUsername(tempUsername);
     setEditing(false);
-    // You could also update Firebase displayName here if needed
+    localStorage.setItem("username", tempUsername);
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setProfilePic(file);
-      setPreviewURL(URL.createObjectURL(file));
+      const preview = URL.createObjectURL(file);
+    setProfilePic(file);
+    setPreviewURL(preview);
+    localStorage.setItem("profilePic", preview);
     }
   };
   
@@ -126,11 +165,12 @@ const [previewURL, setPreviewURL] = useState(null);
         <div className="toggle-row">
           <label htmlFor="lightToggle">☀️ Light Mode</label>
           <input
-            id="lightToggle"
-            type="checkbox"
-            checked={lightMode}
-            onChange={() => setLightMode(!lightMode)}
-          />
+  id="lightToggle"
+  type="checkbox"
+  checked={lightMode}
+  onChange={toggleLightMode}
+/>
+
         </div>
 
         {/* Logout Button */}

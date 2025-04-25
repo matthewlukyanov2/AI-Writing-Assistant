@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+### AI-Powered Dashboard App
+A React-based application that offers personalized AI interaction, customizable settings, and a smooth user experience with persistent UI preferences.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Developed By
+Matthew Lukyanov G00421514
 
-## Available Scripts
+### Project Overview
+This project was developed as part of our academic coursework to showcase a full-stack application with authentication, real-time UI updates, and state management using modern web development tools.
 
-In the project directory, you can run:
+### Screencast Overview
+https://youtu.be/JvxKGFjGCBQ
 
-### `npm start`
+### Technologies Used
+Frontend: React, React Router
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+State Management: useState, useEffect, localStorage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Authentication: Firebase Auth
 
-### `npm test`
+Database: Firebase Firestore
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+API: TogetherAI
 
-### `npm run build`
+Icons & UI: React Icons, CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Screen Recording: OBS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Features
+User registration and login (with instant redirect + notification)
+Theme toggle (light/dark mode with persistence)
+Editable profile (username + profile pic saved locally)
+Logout confirmation modal
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to Use the App 
+first run "npm start" in console if in the code itself.
 
-### `npm run eject`
+1️⃣ Register an Account
+Click “Register” on the homepage.
+Fill in your username, email and password.
+Click Register - You'll be instantly logged in and directed to ai page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2️⃣ Explore the Dashboard
+Access the AI feature, get your welcome message, and enjoy the main app interface.
+Use the navigation to explore different features like AI interactions or your profile settings.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3️⃣ Personalize Your Settings
+Go to the Settings page, on top right corner settings icon
+Edit your username by clicking the ✏️ icon and hitting Save.
+Upload a profile picture – the image will show up and stay saved on your device.
+Toggle between Light Mode and Dark Mode – your choice is remembered for next time.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4️⃣ Logging Out
+Click the Logout button.
+A confirmation popup appears – check the box and confirm if you're sure.
+You’ll be signed out and returned to the homepage to register or log back in.
+If you forgot password, a forgot password link is below the password input and will be brought to new page to reset that said
+password and link sent via email.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Conclusion
+My project demonstrates practical use of React with Firebase for building modern, interactive web applications that are user-friendly and responsive.

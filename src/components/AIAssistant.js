@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAIResponse } from "../utils/togetherAI";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { FiSettings } from "react-icons/fi"; 
 import "./AIAssistant.css"; 
 import "./Home.css";
@@ -8,8 +8,10 @@ import "./Home.css";
 const AIAssistant = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const location = useLocation();
+  const [showPopup, setShowPopup] = useState(false);
   
-  // ✅ Proper localStorage setup on first load
+  // LocalStorage 
   const [history, setHistory] = useState(() => {
     const saved = localStorage.getItem("ai-history");
     return saved ? JSON.parse(saved) : [];
@@ -17,10 +19,25 @@ const AIAssistant = () => {
 
   const [copied, setCopied] = useState(false);
 
-  // ✅ Save to localStorage when history changes
+  // Save to localStorage 
   useEffect(() => {
     localStorage.setItem("ai-history", JSON.stringify(history));
   }, [history]);
+
+  useEffect(() => {
+    if (location.state?.registered) {
+      setShowPopup(true);
+  
+      // Clear it after 3 seconds
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+  
+      // Reset the state (optional)
+      window.history.replaceState({}, document.title);
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   const handleGenerate = async () => {
     if (!input.trim()) return;
@@ -37,6 +54,7 @@ const AIAssistant = () => {
     }
   };
 
+
   const handleCopy = () => {
     navigator.clipboard.writeText(output);
     setCopied(true);
@@ -45,7 +63,7 @@ const AIAssistant = () => {
 
   const handleClearHistory = () => {
     setHistory([]);
-    localStorage.removeItem("ai-history"); // 🧼 Clear from storage too!
+    localStorage.removeItem("ai-history"); 
   };
 
   const handleHistoryClick = (historyItem) => {
@@ -63,6 +81,12 @@ const AIAssistant = () => {
     <FiSettings size={24} />
   </Link>
 </div>
+{showPopup && (
+  <div className="popup-message">
+    🎉 Account registered and logged in!
+  </div>
+)}
+
 
       <h2 className="login-title">AI Writing Assistant</h2>
 

@@ -23,13 +23,12 @@ useEffect(() => {
   const savedUsername = localStorage.getItem("username");
   const savedTheme = localStorage.getItem("lightMode");
   const savedPic = localStorage.getItem("profilePic");
-  
+
 if (savedPic) {
   setPreviewURL(savedPic);
 }
 
   if (savedUsername) {
-    setUsername(savedUsername);
     setTempUsername(savedUsername);
   }
 
@@ -50,31 +49,36 @@ if (savedPic) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
+        const currentUID = firebaseUser.uid;
+        const savedUID = localStorage.getItem("userUID");
         const savedUsername = localStorage.getItem("username");
   
-        if (savedUsername) {
+        // ✅ If it's the same user, load saved stuff
+        if (savedUsername && savedUID === currentUID) {
           setUsername(savedUsername);
           setTempUsername(savedUsername);
         } else {
-          const docRef = doc(db, "users", firebaseUser.uid);
+          // 👑 Fresh fetch from Firebase
+          const docRef = doc(db, "users", currentUID);
           const docSnap = await getDoc(docRef);
   
-          if (docSnap.exists()) {
-            const fetchedUsername = docSnap.data().username;
-            const fallbackUsername = fetchedUsername || firebaseUser.displayName || firebaseUser.email || "User";
-            setUsername(fallbackUsername);
-            setTempUsername(fallbackUsername);
-          } else {
-            const fallbackUsername = firebaseUser.displayName || firebaseUser.email || "User";
-            setUsername(fallbackUsername);
-            setTempUsername(fallbackUsername);
-          }
+          const fetchedUsername = docSnap.exists()
+            ? docSnap.data().username
+            : firebaseUser.displayName || firebaseUser.email || "User";
+  
+          setUsername(fetchedUsername);
+          setTempUsername(fetchedUsername);
+  
+          // 💾 Save fresh username + UID to localStorage
+          localStorage.setItem("username", fetchedUsername);
+          localStorage.setItem("userUID", currentUID);
         }
       }
     });
   
     return () => unsubscribe();
   }, []);
+  
   
 
   const toggleLightMode = () => {

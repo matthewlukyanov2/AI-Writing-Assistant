@@ -23,8 +23,7 @@ const Signup = () => {
         email: email,
       });
   
-      alert(`Signup successful! Welcome, ${username} 🥳`);
-      navigate("/login");
+      navigate("/ai", { state: { registered: true } });
     } catch (error) {
       alert(error.message);
     }

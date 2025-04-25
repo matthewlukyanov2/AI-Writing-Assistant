@@ -53,12 +53,12 @@ if (savedPic) {
         const savedUID = localStorage.getItem("userUID");
         const savedUsername = localStorage.getItem("username");
   
-        // ✅ If it's the same user, load saved stuff
+        // If it's the same userload saved stuff
         if (savedUsername && savedUID === currentUID) {
           setUsername(savedUsername);
           setTempUsername(savedUsername);
         } else {
-          // 👑 Fresh fetch from Firebase
+        
           const docRef = doc(db, "users", currentUID);
           const docSnap = await getDoc(docRef);
   
@@ -69,7 +69,7 @@ if (savedPic) {
           setUsername(fetchedUsername);
           setTempUsername(fetchedUsername);
   
-          // 💾 Save fresh username + UID to localStorage
+          //Save fresh username + UID to localStorage
           localStorage.setItem("username", fetchedUsername);
           localStorage.setItem("userUID", currentUID);
         }
